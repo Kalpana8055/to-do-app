@@ -67,7 +67,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+task/
+├── backend/
+│   ├── app.py or index.js
+│   └── Dockerfile
+├── frontend/
+│   ├── App.js or main.dart
+│   └── Dockerfile
+├── db/
+│   └── init.sql  # enables pgvector
+├── docker-compose.yml
+└── README.md
 # 📝 Dockerized To-Do App with Vector Search
 
 A full-stack, containerized to-do list app that supports semantic search using vector embeddings. It uses PostgreSQL with the `pgvector` extension to store and search embeddings of task descriptions.
@@ -96,16 +106,15 @@ A full-stack, containerized to-do list app that supports semantic search using v
 
 ## 📦 Getting Started
 
+### Prerequisites
 
+- [Docker](https://www.docker.com/) and Docker Compose
+- Git
 
-task
-├── backend/
-│   ├── app.py or index.js
-│   └── Dockerfile
-├── frontend/
-│   ├── App.js or main.dart
-│   └── Dockerfile
-├── db/
-│   └── init.sql  # enables pgvector
-├── docker-compose.yml
-└── README.md
+---
+
+### 🛠️ Installation
+
+```bash
+git clone https://github.com/YOUR_USERNAME/todo-vector-app.git
+cd todo-vector-app
