@@ -96,19 +96,9 @@ A full-stack, containerized to-do list app that supports semantic search using v
 
 ## 📦 Getting Started
 
-### Prerequisites
 
-- [Docker](https://www.docker.com/) and Docker Compose
-- Git
 
----
-
-### 🛠️ Installation
-
-```bash
-git clone https://github.com/YOUR_USERNAME/todo-vector-app.git
-cd todo-vector-app
-todo-vector-app/
+task
 ├── backend/
 │   ├── app.py or index.js
 │   └── Dockerfile
