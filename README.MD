@@ -118,3 +118,15 @@ A full-stack, containerized to-do list app that supports semantic search using v
 ```bash
 git clone https://github.com/YOUR_USERNAME/todo-vector-app.git
 cd todo-vector-app
+
+task/
+├── backend/
+│   ├── app.py or index.js
+│   └── Dockerfile
+├── frontend/
+│   ├── App.js or main.dart
+│   └── Dockerfile
+├── db/
+│   └── init.sql  # enables pgvector
+├── docker-compose.yml
+└── README.md
