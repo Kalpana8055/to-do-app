@@ -1,47 +1,121 @@
-# Task Manager with Basic Caching
+# Getting Started with Create React App
 
-This project demonstrates a simple task management application with a basic caching mechanism implemented using `localStorage`. The goal is to improve perceived performance by reducing redundant "API calls" (simulated in this case) and loading data faster.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Features
+## Available Scripts
 
-* **Task Management:** Add and remove tasks from a list.
-* **Basic Caching:**
-    * On application load, it attempts to fetch tasks from `localStorage` first.
-    * If tasks are found in `localStorage`, they are used immediately for faster rendering.
-    * If no cached tasks are found, or a refresh is forced, tasks are "fetched" from a simulated server and then saved to `localStorage`.
-    * When tasks are added or removed, both the "server" (simulated `localStorage` for server data) and the local cache are updated to maintain consistency.
-* **Manual Cache Refresh:** A "Refresh Cache" button is provided to explicitly force a data fetch from the "server," bypassing the cache.
+In the project directory, you can run:
 
-## How Caching is Implemented
+### `npm start`
 
-The caching mechanism follows these steps:
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-1.  **On App Load (`loadTasks` function):**
-    * The application first checks `localStorage` for a key named `"tasks"`.
-    * If `localStorage.getItem("tasks")` returns a value, it means cached data exists. This data is then `JSON.parse()`d and immediately used to render the task list. This provides a very fast initial load.
-    * If no cached data is found, or if the `forceRefresh` parameter is `true` (e.g., from the "Refresh Cache" button), the `fetchTasksFromServer()` function is called.
-    * Once the "server" (simulated) responds with the task list, this data is `JSON.stringify()`d and saved to `localStorage` using `localStorage.setItem("tasks", JSON.stringify(tasks))` for future use. The tasks are then rendered.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-2.  **Updating Cache on Data Changes:**
-    * When a new task is added via the form (`addTaskForm` submission), the `addTaskToServer()` function is called. This function simulates sending the new task to a backend and returns the *updated* list of tasks from the "server."
-    * Crucially, after the "server" update, `localStorage.setItem("tasks", JSON.stringify(updatedTasks))` is called to update the local cache with the latest, most accurate data from the "server."
-    * Similarly, when a task is removed, `removeTaskFromServer()` is called, and the local cache is updated with the returned `updatedTasks` from the "server."
+### `npm test`
 
-## Simulated Server
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-For this example, the "server" is also simulated using a separate `localStorage` key (`"server_tasks_mock"`). This allows the application to behave as if it's interacting with a backend, but without requiring an actual server setup. In a real-world application, `fetchTasksFromServer`, `addTaskToServer`, and `removeTaskFromServer` would make actual `fetch` API calls to a backend server.
+### `npm run build`
 
-## Getting Started
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-To run this application:
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-1.  **Save the files:** Create a folder named `task-app-with-caching`.
-2.  Inside this folder, save the `index.html`, `style.css`, and `script.js` files as provided.
-3.  **Open `index.html`:** Open the `index.html` file in your web browser.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-You can observe the caching behavior by:
+### `npm run eject`
 
-* Opening the browser's developer console (F12) and navigating to the "Application" tab -> "Local Storage". You'll see the "tasks" key.
-* Reloading the page: The first load might show "Fetching tasks from server...", subsequent loads should show "Using cached tasks." (unless the cache is empty or you force a refresh).
-* Adding/removing tasks and observing how the `localStorage` value for "tasks" updates.
-* Clicking the "Refresh Cache" button to force a new fetch from the "server."
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 📝 Dockerized To-Do App with Vector Search
+
+A full-stack, containerized to-do list app that supports semantic search using vector embeddings. It uses PostgreSQL with the `pgvector` extension to store and search embeddings of task descriptions.
+
+---
+
+## 🚀 Features
+
+- ✅ Add, update, delete, and list to-do items
+- 🧠 Semantic search powered by `pgvector` and sentence-transformers
+- 🐳 Dockerized: easy to run locally or in production
+- 🗄️ PostgreSQL database with vector indexing
+- 📦 Backend and frontend services with a clean architecture
+
+---
+
+## 🧱 Tech Stack
+
+- **Backend**: Node.js (Express) or Python (Flask/Django)
+- **Frontend**: React.js or Flutter Web
+- **Database**: PostgreSQL + `pgvector`
+- **Embeddings**: Sentence Transformers (`all-MiniLM-L6-v2`)
+- **Deployment**: Docker, Docker Compose
+
+---
+
+## 📦 Getting Started
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/) and Docker Compose
+- Git
+
+---
+
+### 🛠️ Installation
+
+```bash
+git clone https://github.com/YOUR_USERNAME/todo-vector-app.git
+cd todo-vector-app
+todo-vector-app/
+├── backend/
+│   ├── app.py or index.js
+│   └── Dockerfile
+├── frontend/
+│   ├── App.js or main.dart
+│   └── Dockerfile
+├── db/
+│   └── init.sql  # enables pgvector
+├── docker-compose.yml
+└── README.md
